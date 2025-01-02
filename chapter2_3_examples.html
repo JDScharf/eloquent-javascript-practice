@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        </meta>
+        <title>Chapter 2 Examples</title>
+    </head>
+
+<body>
+
+<script>
+  // Triangle String
+  let triangle_string = '#######'
+  let triangle_width = 7;
+  let counter = 1;
+
+  function printTriangle() {
+    while (counter <= triangle_width) {
+        console.log(triangle_string.substring(0, counter))
+        counter = counter + 1;
+    }
+}
+
+  // FizzBuzz
+  function fizzBuzz() {
+    for (let number = 1; number <=100; number +=1) {
+    if (number % 3 == 0 & number % 5 == 0)
+        console.log("FizzBuzz")
+    else if (number % 3 == 0)
+        console.log("Fizz")
+    else if (number % 5 == 0)
+        console.log("Buzz")
+    else {
+    console.log(number);
+        }
+    }
+    }
+
+    // Chessboard
+    let aRow = "";
+
+    function makeARow() {
+    for (let width = 1; width <= 8; width++) {
+        if (aRow.length == 8) console.log(aRow);
+        else if (width % 2 == 0) aRow += "#";
+        else aRow += " ";
+    }
+    }
+
+    let bRow = "";
+
+    function makeBRow() {
+    // console.log("makeBRow was called")
+    for (let width = 1; width <= 8; width++) {
+        if (bRow.length == 8) console.log(bRow);
+        else if (width % 2 == 0) bRow += " ";
+        else bRow += "#";
+    }
+    }
+
+    function makeBoard() {
+        for (let height = 1; height <= 8; height++) { 
+        if (height % 2 == 0) makeBRow()
+        else makeARow()
+        }
+    }
+
+    // min
+    function min (a, b) {
+        if (a < b) return a
+        else return b
+        }
+
+    // Is Even
+    function isEven(x) {
+    if (x %2 == 0) return true;
+    else return false;
+    }
+    // Book's answer
+    function isEven(n) {
+        if (n == 0) return true;
+        else if (n == 1) return false;
+        else if (n < 0) return isEven(-n);
+        else return isEven(n - 2);
+        }
+    // Chapter 3 Exercise 3
+            // Your code here.
+        function countBs (event) {
+            event.preventDefault()
+            let a = document.forms["bform"]["bword"].value;
+            // let l = a.length;
+            let x = 0;
+            for (let i = 0; i <= a.length; i++) {
+                if (a[i] === "B") x++;
+                }
+            console.log(x)
+            document.getElementById("bcount").innerHTML = `The number of B's in that word is: ` + x;
+            //   return x;
+            }
+        
+        function countChar (event) {
+            event.preventDefault()
+            let a = document.forms["letterForm"]["aword"].value;
+            let b = document.forms["letterForm"]["letter"].value            
+            let l = a.length;
+            let x = 0;
+            for (let i = 0; i <= l; i++) {
+                if (a[i] == b) x++;
+                }
+            console.log(x)
+            document.getElementById("lcount").innerText = `The number of ` + b + `'s in ` + a + ` is: ` + x;
+            }
+
+</script>
+<section id="exercise1">
+    <h1>Exercise 1</h1>
+    <pre><code>
+        // Triangle String
+        let triangle_string = '#######'
+        let triangle_width = 7;
+        let counter = 1;
+      
+        function printTriangle() {
+          while (counter <= triangle_width) {
+              console.log(triangle_string.substring(0, counter))
+              counter = counter + 1;
+          }
+      }
+      // Answer from website
+        for (let line = "#"; line.length < 8; line += "#")
+        console.log(line);
+    </code></pre>
+    <button onclick="printTriangle()">Execute Code</button>
+</section>
+
+<section id="exercise2">
+    <h1>Exercise 2</h1>
+    <pre><code>
+        // FizzBuzz
+        for (let number = 1; number <=100; number +=1) {
+        if (number % 3 == 0 & number % 5 == 0)
+            console.log("FizzBuzz")
+        else if (number % 3 == 0)
+            console.log("Fizz")
+        else if (number % 5 == 0)
+            console.log("Buzz")
+        else {
+        console.log(number);
+            }
+        }
+
+        //Answer from Website
+        for (let n = 1; n <= 100; n++) {
+            let output = "";
+            if (n % 3 == 0) output += "Fizz";
+            if (n % 5 == 0) output += "Buzz";
+            console.log(output || n);
+          }
+    </code></pre>
+    <button onclick="fizzBuzz()">Execute Code</button>
+</section>
+<section id="exercise3">
+    <h1>Exercise 3 - Chessboard</h1>
+    <pre><code>
+
+        // Chessboard
+        let aRow = "";
+    
+        function makeARow() {
+        for (let width = 1; width <= 8; width++) {
+            if (aRow.length == 8) console.log(aRow);
+            else if (width % 2 == 0) aRow += "#";
+            else aRow += " ";
+        }
+        }
+    
+        let bRow = "";
+    
+        function makeBRow() {
+        // console.log("makeBRow was called")
+        for (let width = 1; width <= 8; width++) {
+            if (bRow.length == 8) console.log(bRow);
+            else if (width % 2 == 0) bRow += " ";
+            else bRow += "#";
+        }
+        }
+    
+        function makeBoard() {
+            for (let height = 1; height <= 8; height++) { 
+            if (height % 2 == 0) makeBRow()
+            else makeARow()
+            }
+        }
+
+        // Answer from Website
+
+        let size = 20;
+
+        let board = "";
+
+        for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+            if ((x + y) % 2 == 0) {
+            board += " ";
+            } else {
+            board += "#";
+            }
+        }
+        board += "\n";
+        }
+
+        console.log(board);
+
+    </code></pre>
+    <button onclick="makeBoard()">Execute Code</button>
+</section>
+<section id="Chapt. 3 Exercise 1">
+    <h1>Chapter 3 - Exercise 1</h1>
+    <pre><code>
+        // Your code here.
+        function min (a, b) {
+        if (a < b) return a;
+        else return b;
+        }
+        console.log(min(0, 10));
+        // → 0
+        console.log(min(0, -10));
+        // → -10
+    </code></pre>
+    <button onclick="console.log(min(0, 10))">Execute Min.</button>
+</section>
+<section id="Chapt. 3 Exercise 2">
+    <h1>Chapter 3 - Exercise 2</h1>
+    <pre><code>
+        // Your code here.
+        function isEven(x) {
+          if (x %2 == 0) return true;
+          else return false;
+          }
+    </code></pre>
+    <button onclick="console.log(isEven(10))">Execute Min.</button>
+</section>
+<section id="Chapt. 3 Exercise 3">
+    <h1>Chapter 3 - Exercise 3</h1>
+    <pre><code>
+        // Your code here.
+        function countBs (a) {
+          let l = a.length;
+          let x = 0;
+          for (let i = 0; i <= l; i++) {
+            if (a[i] == "B") x++;
+            }
+          return x;
+        }
+        
+        function countChar (a, b) {
+          let l = a.length;
+          let x = 0;
+          for (let i = 0; i <= l; i++) {
+            if (a[i] == b) x++;
+            }
+          return x;
+        }
+        console.log(countBs("BOB"));
+        // → 2
+        console.log(countChar("kakkerlak", "k"));
+        // → 4
+
+        // Book Answer
+        function countChar(string, ch) {
+            let counted = 0;
+            for (let i = 0; i < string.length; i++) {
+              if (string[i] == ch) {
+                counted += 1;
+              }
+            }
+            return counted;
+          }
+          
+          function countBs(string) {
+            return countChar(string, "B");
+          }
+    </code></pre>
+        <form name="bform" onsubmit="return countBs(event)">
+            <label for="bword">Enter a word with capital B's</label><br>
+            <input type="text" id="bword" name="bword" value="BoBBBY"><br><br>
+            <input type="submit" value="Submit">
+          </form> 
+        <h3 id="bcount"></h3>
+        <br>
+        <form name="letterForm" onsubmit="return countChar(event)">
+            <label for="aword">Enter a word</label><br>
+            <input type="text" id="aword" name="aword" placeholder="Enter random word"><br>
+            <label for="letter">Enter a letter (that is in that word)</label><br>
+            <input type="text" id="letter" name="letter" placeholder="Enter a letter"><br><br>
+            <input type="submit" value="Submit">
+          </form> 
+        <h3 id="lcount"></h3>
+</section>
+</body>
+</html>
