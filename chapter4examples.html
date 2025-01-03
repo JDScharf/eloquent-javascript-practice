@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        </meta>
+        <title>Chapter 4 Examples</title>
+    </head>
+
+<body>
+
+<script>
+// Functions to make a range and sum
+function range(event) {
+    event.preventDefault()
+    let start = parseInt(document.forms["rangeForm"]["start"].value);
+    let end = parseInt(document.forms["rangeForm"]["end"].value);
+    console.log('start is a ' + typeof start);
+  let numArray = [];
+  for (i = start; i <= end; i++) {
+     numArray.push(i);
+    }
+    console.log(numArray);
+    document.getElementById("prange").innerText = numArray;
+    return numArray
+  }
+
+function sum(array) {
+    // let array = document.getElementById("prange").value;
+    console.log('array is a ' + typeof array);
+   let total = 0;
+   for (i = 0; i < array.length; i++) {
+     let num = array[i];
+     total += num;
+     console.log(total);
+   }
+   console.log(total);
+   document.getElementById("srange").innerText = `The resulting sum is: ` + total;
+   return total;
+  }
+
+</script>
+<section id="exercise1">
+    <h1>Chapter 4 - Exercise 1</h1>
+    <pre><code>
+        function range(start, end) {
+            let numArray = [];
+            for (i = start; i <= end; i++) {
+               numArray.push(i);
+              }
+            return numArray
+            }
+          
+          function sum(array) {
+             let total = 0;
+             for (i = 0; i < array.length; i++) {
+               let num = array[i];
+               total = total + num;
+             }
+            return total;
+            }
+      // Answer from website
+
+    </code></pre>
+    <form name="rangeForm" onsubmit="return range(event)">
+        <label for="start">Enter starting number</label><br>
+        <input type="number" id="start" name="start" placeholder="Enter starting intiger"><br>
+        <label for="end">Enter ending number</label><br>
+        <input type="number" id="end" name="end" placeholder="Enter an ending intiger"><br><br>
+        <input type="submit" value="Submit">
+      </form> 
+    <h3 id="prange"></h3>
+    <form name="sumForm" onsubmit="return sum(range(event))">
+        <input type="submit" value="Get Sum of Range">
+      </form> 
+    <h3 id="srange"></h3>
+</section>
+</body>
+</html>
